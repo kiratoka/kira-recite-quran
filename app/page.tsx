@@ -1,11 +1,14 @@
+import Surahs from "@/components/Homepage/Surahs"
 import Navbar from "../components/Navbar/Navbar"
 
+const Home = async () => {
+  const responseSurahs = await fetch(`${process.env.NEXT_PUBLIC_API_URL}surahs`)
+  const surahs = await responseSurahs.json()
 
-const Home = () => {
   return (
     <div>
       <Navbar />
-      <div className="px-12">Home</div>
+      <Surahs surahs={surahs} />
     </div>
   )
 }

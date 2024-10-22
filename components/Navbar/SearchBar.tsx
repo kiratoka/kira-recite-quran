@@ -2,7 +2,7 @@ import React from 'react'
 
 const SearchBar = () => {
     return (
-        <div className="relative">
+        <div className="inline-flex items-center relative">
             <label htmlFor="Search" className="sr-only"> Search for... </label>
 
             <input
