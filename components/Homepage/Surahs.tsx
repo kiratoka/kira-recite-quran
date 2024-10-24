@@ -54,7 +54,7 @@ const Surahs = ({ surahs }: SurahsProps) => {
                                     >
                                         <div className="flex items-center p-4 hover:bg-gray-600/50 rounded-lg transition-all duration-300">
                                             {/* Number Circle */}
-                                            <div className="flex items-center justify-center h-12 w-12 rounded-full bg-gradient-to-br from-cyan-500 to-blue-600 mr-4">
+                                            <div className="flex items-center justify-center h-12 w-12 rounded-full bg-cyan-600 border mr-4">
                                                 <span className="font-bold">
                                                     {surah.number}
                                                 </span>
