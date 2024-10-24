@@ -15,7 +15,7 @@ interface SurahCardProps {
 
 const SurahCard = ({ surah }: SurahCardProps) => {
     return (
-        <div className="w-full relative max-w-md mt-6 sm:mt-8 mx-auto">
+        <div className="w-full relative max-w-2xl sm:mt-8 mx-auto">
             {/* Gradient background */}
             {/* <div className="absolute inset-0 h-full w-full bg-gradient-to-r from-blue-500 to-teal-500 transform scale-[0.80] rounded-full blur-3xl" /> */}
 
