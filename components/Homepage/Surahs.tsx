@@ -6,7 +6,7 @@ import {
     AccordionTrigger,
 } from "@/components/ui/accordion";
 import Link from "next/link";
-import { ChevronRight, Book, Bookmark } from "lucide-react";
+import { Bookmark } from "lucide-react";
 import { Card } from "@/components/ui/card";
 
 interface Surah {
@@ -67,7 +67,7 @@ const Surahs = ({ surahs }: SurahsProps) => {
                                                         {surah.name}
                                                     </h2>
                                                     <span className="text-gray-400">
-                         ({surah.translation})
+                                                        ({surah.translation})
                                                     </span>
                                                 </div>
                                                 <div className="flex items-center space-x-4 text-sm text-gray-400 mt-1">
