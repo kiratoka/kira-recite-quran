@@ -118,7 +118,7 @@ const Isisurah = ({ surah, latins, numberSurah }: SurahProps & LatinProps & Numb
               className="sm:border-b max-w-6xl mx-auto border-gray-800 overflow-hidden transition-all duration-200 hover:border-cyan-500/50"
             >
               <div className="sm:p-4 space-y-4">
-                <div className="flex items-start justify-between gap-4">
+                <div className="flex items-start justify-between gap-y-4">
                   <div className="flex flex-col items-center gap-3">
                     <div className="flex items-center justify-center h-10 w-10 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400">
                       {ayat.number.inSurah}
