@@ -79,10 +79,10 @@ const Isisurah = ({ surah, latins, numberSurah }: SurahProps & LatinProps & Numb
   };
 
 
-  
+
   return (
     <Card className="w-full mx-auto bg-gradient-to-b from-gray-900 to-gray-950 shadow-xl">
-      <CardContent className="p-6">
+      <div className='py-6 px-3'>
         {numberSurah > 1 && (
           <div className="mb-8 space-y-4">
             <div className="flex max-sm:flex-col-reverse justify-center items-center gap-4">
@@ -135,21 +135,21 @@ const Isisurah = ({ surah, latins, numberSurah }: SurahProps & LatinProps & Numb
                     </button>
                   </div>
                   <div className="flex-1">
-                    <p className="text-3xl sm:text-4xl md:text-5xl leading-relaxed text-end mb-4">
+                    <p className="text-3xl sm:text-4xl md:text-5xl leading-relaxed text-end mb-4 px-3 arabic-text">
                       {ayat.arab}
                       <span className="mx-3 px-3 py-1 text-2xl border bg-cyan-500/10 text-cyan-400 border-cyan-500/20 rounded-full">
                         {convertToArabicNumber(ayat.number.inSurah)}
                       </span>
                     </p>
-                    <p className="text-lg italic text-gray-400 text-start mb-2">
-                      {latins[index]?.teksLatin}
-                    </p>
-                    <p className="text-gray-300 text-base sm:text-lg">
-                      {ayat.translation}
-                    </p>
+                  
                   </div>
                 </div>
-
+                <p className="text-lg italic text-gray-400 text-start mb-2">
+                  {latins[index]?.teksLatin}
+                </p>
+                <p className="text-gray-300 text-base sm:text-lg">
+                  {ayat.translation}
+                </p>
                 <AccordionTrigger className="py-2 px-4 w-full flex items-center gap-2 text-cyan-600 text-lg hover:text-cyan-300 transition-colors">
                   <ScrollText className="h-4 w-4" />
                   <span>Tafsir</span>
@@ -162,7 +162,7 @@ const Isisurah = ({ surah, latins, numberSurah }: SurahProps & LatinProps & Numb
             </AccordionItem>
           ))}
         </Accordion>
-      </CardContent>
+      </div>
     </Card>
   );
 };
