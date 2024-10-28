@@ -20,7 +20,7 @@ interface RawLatinProps {
   };
 }
 
-const Navbar = ({ isSurahPage, rawLatin }: { isSurahPage: boolean; rawLatin?: RawLatinProps }) => {
+const Navbar = ({ isSurahPage, rawLatin }: { isSurahPage?: boolean; rawLatin?: RawLatinProps }) => {
   const [isOpen, setIsOpen] = useState(true);
 
   const namaSurah = rawLatin?.data.namaLatin;
