@@ -4,10 +4,9 @@ import Navbar from "../components/Navbar/Navbar"
 const Home = async () => {
   const responseSurahs = await fetch(`${process.env.NEXT_PUBLIC_API_URL}surahs`)
   const surahs = await responseSurahs.json()
-
   return (
     <div>
-      <Navbar />
+      <Navbar surahs={surahs} />
       <Surahs surahs={surahs} />
     </div>
   )

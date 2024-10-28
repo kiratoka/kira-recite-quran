@@ -135,13 +135,18 @@ const Isisurah = ({ surah, latins, numberSurah }: SurahProps & LatinProps & Numb
                     </button>
                   </div>
                   <div className="flex-1">
-                    <p className="text-3xl sm:text-4xl md:text-5xl leading-relaxed text-end mb-4 px-3 arabic-text">
+
+                    {/* AYAT ARAB START */}
+
+                    <p className="text-2xl sm:text-4xl md:text-5xl leading-relaxed text-end mb-4 px-3">
                       {ayat.arab}
                       <span className="mx-3 px-3 py-1 text-2xl border bg-cyan-500/10 text-cyan-400 border-cyan-500/20 rounded-full">
                         {convertToArabicNumber(ayat.number.inSurah)}
                       </span>
                     </p>
-                  
+                    {/* AYAT ARAB END */}
+
+
                   </div>
                 </div>
                 <p className="text-lg italic text-gray-400 text-start mb-2">

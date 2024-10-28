@@ -1,6 +1,5 @@
 "use client"
 import Link from "next/link";
-import { ModeToggle } from "./DarkModeToggle";
 import SearchBar from "./SearchBar";
 import { ArrowLeft, ArrowRight, ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
@@ -20,7 +19,12 @@ interface RawLatinProps {
   };
 }
 
-const Navbar = ({ isSurahPage, rawLatin }: { isSurahPage?: boolean; rawLatin?: RawLatinProps }) => {
+interface ListSurah {
+  number: number
+  name: string
+}[]
+
+const Navbar = ({ isSurahPage, rawLatin, surahs }: { isSurahPage?: boolean; rawLatin?: RawLatinProps; surahs?: ListSurah }) => {
   const [isOpen, setIsOpen] = useState(true);
 
   const namaSurah = rawLatin?.data.namaLatin;
