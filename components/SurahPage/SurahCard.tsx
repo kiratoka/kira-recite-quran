@@ -13,9 +13,9 @@ interface SurahCardProps {
     };
 }
 
-const SurahCard = ({ surah }: SurahCardProps) => {
+const SurahCard = ({ surah, namaSurahArab }: SurahCardProps & { namaSurahArab: string }) => {
     return (
-        <div className="w-full relative max-w-2xl sm:mt-8 mx-auto">
+        <div className="w-full relative max-w-2xl sm:my-7 mx-auto">
             {/* Gradient background */}
             {/* <div className="absolute inset-0 h-full w-full bg-gradient-to-r from-blue-500 to-teal-500 transform scale-[0.80] rounded-full blur-3xl" /> */}
 
@@ -24,7 +24,7 @@ const SurahCard = ({ surah }: SurahCardProps) => {
                 <div className="flex justify-between items-start mb-4">
                     <div className="flex-1">
                         <h3 className="text-xl font-bold text-white mb-1">
-                            {surah.name}
+                            {surah.name} ( {namaSurahArab} )
                         </h3>
                         <p className="text-sm text-slate-500">
                             {surah.translation}

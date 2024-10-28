@@ -11,11 +11,12 @@ const page = async ({ params }: any) => {
     const surah = await responseSurahs.json()
     const rawLatin = await responseLatin.json()
     const latins = rawLatin.data.ayat
-
+    const namaSurahArab = rawLatin.data.nama
+    const isSurahPage = true
     return (
         <div>
-            <Navbar />
-            <SurahCard surah={surah} />
+            <Navbar isSurahPage={isSurahPage} rawLatin={rawLatin} />
+            <SurahCard surah={surah} namaSurahArab={namaSurahArab} />
             <Isisurah surah={surah} latins={latins} numberSurah={numberSurah} />
 
         </div>

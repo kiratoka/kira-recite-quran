@@ -78,6 +78,8 @@ const Isisurah = ({ surah, latins, numberSurah }: SurahProps & LatinProps & Numb
     setPlayingIndex(index);
   };
 
+
+  
   return (
     <Card className="w-full mx-auto bg-gradient-to-b from-gray-900 to-gray-950 shadow-xl">
       <CardContent className="p-6">
@@ -133,13 +135,13 @@ const Isisurah = ({ surah, latins, numberSurah }: SurahProps & LatinProps & Numb
                     </button>
                   </div>
                   <div className="flex-1">
-                    <p className="text-3xl sm:text-4xl md:text-5xl  leading-relaxed text-end mb-4">
+                    <p className="text-3xl sm:text-4xl md:text-5xl leading-relaxed text-end mb-4">
                       {ayat.arab}
-                      <span className="mx-2 px-3 py-1 text-2xl border bg-cyan-500/10 text-cyan-400 border-cyan-500/20 rounded-full">
+                      <span className="mx-3 px-3 py-1 text-2xl border bg-cyan-500/10 text-cyan-400 border-cyan-500/20 rounded-full">
                         {convertToArabicNumber(ayat.number.inSurah)}
                       </span>
                     </p>
-                    <p className="text-lg italic text-gray-400 text-end mb-2">
+                    <p className="text-lg italic text-gray-400 text-start mb-2">
                       {latins[index]?.teksLatin}
                     </p>
                     <p className="text-gray-300 text-base sm:text-lg">
