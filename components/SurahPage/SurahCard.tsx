@@ -1,17 +1,9 @@
 import React from 'react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Meteors } from '../ui/meteors';
+import { SurahCardProps } from '@/lib/types';
 
-interface SurahCardProps {
-    surah: {
-        number: number;
-        name: string;
-        translation: string;
-        revelation: 'Makkiyah' | 'Madaniyah';
-        numberOfAyahs: number;
-        description: string;
-    };
-}
+
 
 const SurahCard = ({ surah, namaSurahArab }: SurahCardProps & { namaSurahArab: string }) => {
     return (

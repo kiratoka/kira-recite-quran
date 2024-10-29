@@ -6,48 +6,10 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { ScrollText, Play, Pause } from "lucide-react";
+import { LatinProps, NumberSurahProps, SurahProps } from '@/lib/types';
 
-interface SurahProps {
-  surah: {
-    bismillah: {
-      arab: string;
-      translation: string;
-      audio: {
-        alafasy: string;
-      };
-    };
-    ayahs: {
-      number: {
-        inSurah: number;
-      };
-      arab: string;
-      translation: string;
-      image: {
-        primary: string
-      };
-      tafsir: {
-        kemenag: {
-          long: string
-        }
-      };
-      audio: {
-        alafasy: string
-      };
-    }[];
-  };
-}
-
-interface LatinProps {
-  latins: {
-    teksLatin: string;
-  }[];
-}
-
-interface NumberSurahProps {
-  numberSurah: number;
-}
 
 const convertToArabicNumber = (num: number): string => {
   const arabicNumbers = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
@@ -96,7 +58,7 @@ const Isisurah = ({ surah, latins, numberSurah }: SurahProps & LatinProps & Numb
                   <Play className="h-5 w-5" />
                 )}
               </button>
-              <h1 className="text-center text-5xl py-6 text-cyan-400">
+              <h1 className="text-center text-5xl py-6 ">
                 {surah.bismillah.arab}
               </h1>
             </div>

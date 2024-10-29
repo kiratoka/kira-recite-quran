@@ -3,28 +3,12 @@ import Link from "next/link";
 import SearchBar from "./SearchBar";
 import { ArrowLeft, ArrowRight, ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
+import { ListSurah, RawLatinProps } from "@/lib/types";
 
-interface RawLatinProps {
-  data: {
-    nomor: number;
-    namaLatin: string;
-    suratSelanjutnya: {
-      nomor: number;
-      namaLatin: string;
-    };
-    suratSebelumnya: {
-      nomor: number;
-      namaLatin: string;
-    };
-  };
-}
 
-interface ListSurah {
-  number: number
-  name: string
-}[]
 
-const Navbar = ({ isSurahPage, rawLatin, surahs }: { isSurahPage?: boolean; rawLatin?: RawLatinProps; surahs?: ListSurah }) => {
+const Navbar = ({ isSurahPage, rawLatin, surahs }: { isSurahPage?: boolean; rawLatin?: RawLatinProps; surahs: ListSurah[] }) => {
+  // Ini untuk membuka tutup komponen navigasi surah next dan prev pada mobile
   const [isOpen, setIsOpen] = useState(true);
 
   const namaSurah = rawLatin?.data.namaLatin;
@@ -90,7 +74,7 @@ const Navbar = ({ isSurahPage, rawLatin, surahs }: { isSurahPage?: boolean; rawL
 
             {/* Search Bar */}
             <div className="flex items-center ml-auto space-x-4">
-              <SearchBar />
+              <SearchBar surahs={surahs} />
               {isSurahPage && (
                 <button
                   onClick={toggleMenu}
