@@ -23,7 +23,7 @@ const Navbar = ({ isSurahPage, rawLatin, surahs }: { isSurahPage?: boolean; rawL
   };
 
   return (
-    <div className="sticky top-0 z-30">
+    <div className="sticky top-0 z-20">
       {/* Main Navbar */}
       <nav className="backdrop-blur-lg bg-background/80">
         <div className="container mx-auto">
@@ -94,7 +94,7 @@ const Navbar = ({ isSurahPage, rawLatin, surahs }: { isSurahPage?: boolean; rawL
 
       {/* Mobile Collapsible Navigation */}
       {isSurahPage && isOpen && (
-        <div className="md:hidden backdrop-blur-lg bg-background/80 px-4 animate-in slide-in-from-top">
+        <div className="md:hidden relative -z-10 backdrop-blur-lg  px-4 animate-in slide-in-from-top">
           <div className="flex py-2 justify-between items-center space-x-4">
             <div className="flex-1">
               {noSurahPrev && (

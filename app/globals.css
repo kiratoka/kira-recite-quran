@@ -17,3 +17,7 @@ body {
     --radius: 0.5rem;
   }
 }
+.bg-blur {
+  filter: blur(10px);
+  -webkit-filter: blur(10px);
+}
