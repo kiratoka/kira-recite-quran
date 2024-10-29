@@ -100,7 +100,7 @@ const SearchBar = ({ surahs }: { surahs: ListSurah[] }) => {
 
             {/* Dropdown suggestions */}
             {isOpen && filteredSurah.length > 0 && query !== '' && (
-                <div className="absolute z-10 w-full mt-1 bg-white rounded-lg shadow-lg border dark:bg-gray-800 dark:border-gray-700">
+                <div className="absolute z-50 w-full mt-1 bg-white rounded-lg shadow-lg border dark:bg-gray-800 dark:border-gray-700">
                     <ul className="py-1 overflow-auto max-h-64">
                         {filteredSurah.map((surah) => (
                             <li
