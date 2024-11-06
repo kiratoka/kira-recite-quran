@@ -43,7 +43,7 @@ const Isisurah = ({ surah, latins, numberSurah }: SurahProps & LatinProps & Numb
 
 
   return (
-    <Card className="w-full mx-auto bg-gradient-to-b from-gray-900 to-gray-950 shadow-xl">
+    <div className="w-full mx-auto bg-gradient-to-b from-gray-900 to-gray-950 shadow-xl">
       <div className='py-6 px-3'>
         {numberSurah > 1 && (
           <div className="mb-8 space-y-4">
@@ -100,7 +100,7 @@ const Isisurah = ({ surah, latins, numberSurah }: SurahProps & LatinProps & Numb
 
                     {/* AYAT ARAB START */}
 
-                    <p className="text-2xl sm:text-4xl md:text-5xl leading-relaxed text-end mb-4 px-3">
+                    <p className="text-2xl leading-relaxed sm:text-4xl sm:leading-loose md:text-[3rem] md:leading-loose text-end mt-3 mb-4 px-3">
                       {ayat.arab}
                       <span className="mx-3 px-3 py-1 text-2xl border bg-cyan-500/10 text-cyan-400 border-cyan-500/20 rounded-full">
                         {convertToArabicNumber(ayat.number.inSurah)}
@@ -130,7 +130,7 @@ const Isisurah = ({ surah, latins, numberSurah }: SurahProps & LatinProps & Numb
           ))}
         </Accordion>
       </div>
-    </Card>
+    </div>
   );
 };
 

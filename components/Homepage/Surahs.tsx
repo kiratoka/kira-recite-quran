@@ -23,68 +23,60 @@ type SurahsProps = {
 
 const Surahs = ({ surahs }: SurahsProps) => {
     return (
-        <div className="min-h-screen text-white">
+        <div className="min-h-screen text-white/90">
             <div className="container mx-auto px-4 py-8">
-                {/* Header Section */}
-                <div className="mb-8 max-w-7xl mx-auto">
-
-                    <div className="flex items-center mb-6">
-                        <h1 className="text-3xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-                            Daftar Surah Al-Qur'an
-                        </h1>
-                    </div>
-                    <p className="text-gray-400">
-                        Temukan dan pelajari 114 surah dalam Al-Qur'an
-                    </p>
-                </div>
-
-                {/* Surah List */}
                 <Accordion type="single" collapsible className="space-y-4">
                     {surahs.map((surah) => (
-                        <Card key={surah.number} className='max-w-7xl mx-auto'>
+                        <Card 
+                            key={surah.number} 
+                            className="max-w-7xl mx-auto backdrop-blur-md dark:bg-cyan-800/20 border-0 shadow-lg"
+                        >
                             <AccordionItem
                                 value={surah.number.toString()}
-                                className="border-none bg-gray-900 pr-5"
+                                className="border border-white/10 rounded-lg overflow-hidden"
                             >
-                                <AccordionTrigger className="hover:no-underline">
-                                    <Link
-                                        href={`/surah/${surah.number}`}
-                                        className=""
-                                    >
-                                        <div className="flex items-center p-4 hover:bg-gray-600/50 rounded-lg transition-all duration-300">
-                                            {/* Number Circle */}
-                                            <div className="flex items-center justify-center h-12 w-12 rounded-full bg-cyan-600 border mr-4">
-                                                <span className="font-bold">
-                                                    {surah.number}
+                                <Link
+                                    href={`/surah/${surah.number}`}
+                                    className=""
+                                >
+                                    <div className="flex items-center p-4 hover:bg-white/5 rounded-lg transition-all duration-300">
+                                        {/* Number Circle */}
+                                        <div className="flex items-center justify-center h-12 w-12 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white mr-4">
+                                            <span className="font-bold">
+                                                {surah.number}
+                                            </span>
+                                        </div>
+
+                                        {/* Surah Info */}
+                                        <div className="flex-grow max-md:pl-3">
+                                            <div className="max-sm:flex-col flex max-sm:items-start items-center sm:space-x-2">
+                                                <h2 className="text-xl font-semibold text-white">
+                                                    {surah.name}
+                                                </h2>
+                                                <span className="text-white/60">
+                                                    ({surah.translation})
                                                 </span>
                                             </div>
-
-                                            {/* Surah Info */}
-                                            <div className="flex-grow max-md:pl-3">
-                                                <div className="max-sm:flex-col flex max-sm:items-start items-center sm:space-x-2">
-                                                    <h2 className="text-xl font-semibold text-cyan-400">
-                                                        {surah.name}
-                                                    </h2>
-                                                    <span className="text-gray-400">
-                                                        ({surah.translation})
-                                                    </span>
-                                                </div>
-                                                <div className="flex items-center space-x-4 text-sm text-gray-400 mt-1">
-                                                    <span className="flex items-center">
-                                                        <Bookmark className="h-4 w-4 mr-1" />
-                                                        {surah.numberOfAyahs} Ayat
-                                                    </span>
-                                                    <span className="px-2 py-1 bg-gray-800 rounded-full text-xs">
-                                                        {surah.revelation}
-                                                    </span>
-                                                </div>
+                                            <div className="flex items-center space-x-4 text-sm text-white/60 mt-1">
+                                                <span className="flex items-center">
+                                                    <Bookmark className="h-4 w-4 mr-1" />
+                                                    {surah.numberOfAyahs} Ayat
+                                                </span>
+                                                <span className="px-2 py-1 bg-white/10 backdrop-blur-sm rounded-full text-xs">
+                                                    {surah.revelation}
+                                                </span>
                                             </div>
                                         </div>
-                                    </Link>
+                                    </div>
+                                </Link>
+                                <AccordionTrigger className="hover:no-underline hover:bg-white/5 pr-5">
+                                    <div className="flex justify-center w-full">
+                                        <h1 className="text-center text-white/90">Deskripsi</h1>
+                                    </div>
                                 </AccordionTrigger>
                                 <AccordionContent>
-                                    <div className=" px-4 sm:px-6 rounded-lg mt-2 mb-4 md:ml-16">
-                                        <p className="text-gray-300 leading-relaxed text-base">
+                                    <div className="px-4 sm:px-6 rounded-lg mt-2 mb-4 md:ml-16">
+                                        <p className="text-white/80 leading-relaxed text-base">
                                             {surah.description}
                                         </p>
                                     </div>

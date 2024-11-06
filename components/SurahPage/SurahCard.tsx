@@ -7,7 +7,7 @@ import { SurahCardProps } from '@/lib/types';
 
 const SurahCard = ({ surah, namaSurahArab }: SurahCardProps & { namaSurahArab: string }) => {
     return (
-        <div className="w-full relative max-w-2xl sm:my-7 mx-auto">
+        <div className="w-full relative max-w-2xl mx-auto">
             {/* Gradient background */}
             {/* <div className="absolute inset-0 h-full w-full bg-gradient-to-r from-blue-500 to-teal-500 transform scale-[0.80] rounded-full blur-3xl" /> */}
 
