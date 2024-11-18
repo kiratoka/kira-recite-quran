@@ -39,6 +39,7 @@ const Surahs = ({ surahs }: SurahsProps) => {
                                 <Link
                                     href={`/surah/${surah.number}`}
                                     className=""
+                                    scroll={true}
                                 >
                                     <div className="flex items-center p-4 hover:bg-gray-600/50 rounded-lg transition-all duration-300">
                                         {/* Number Circle */}
