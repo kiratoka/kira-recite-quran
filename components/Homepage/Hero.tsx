@@ -3,6 +3,7 @@
 import { ArrowRight } from "lucide-react";
 import { Button } from "../ui/button";
 import { StarsBackground } from "../ui/stars-background";
+import { ShootingStars } from "../ui/shooting-stars";
 
 const Hero = () => {
     const handleButtonClick = () => {
@@ -13,7 +14,7 @@ const Hero = () => {
     };
 
     return (
-        <div className="h-screen rounded-md flex flex-col items-center justify-center relative w-full px-8">
+        <div className="h-screen bg-neutral-950 rounded-md flex flex-col items-center justify-center relative w-full px-8">
             <div className="relative flex-col md:flex-col z-10 md:text-xl md:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium flex items-center gap-2 md:gap-8">
                 <h2 className="relative flex-col md:flex-row z-10 text-3xl md:text-5xl md:leading-tight max-w-5xl mx-auto text-center tracking-tight font-semibold bg-clip-text text-transparent bg-gradient-to-b from-neutral-600 via-cyan-500 to-white flex items-center gap-2 md:gap-8">
                     <span>Kira Recite Quran</span>
@@ -36,6 +37,7 @@ const Hero = () => {
                     </Button>
                 </div>
             </div>
+            <ShootingStars minSpeed={6} maxSpeed={10} starWidth={40}/>
             <StarsBackground />
         </div>
     )
