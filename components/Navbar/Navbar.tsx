@@ -23,7 +23,7 @@ const Navbar = ({ isSurahPage, rawLatin, surahs }: { isSurahPage?: boolean; rawL
   };
 
   return (
-    <div className="sticky top-0 z-20">
+    <div className={`${isSurahPage? "sticky" : "fixed"} top-0 z-20 w-full`}>
       {/* Main Navbar */}
       <nav className="backdrop-blur-lg bg-background/80">
         <div className="container mx-auto">
