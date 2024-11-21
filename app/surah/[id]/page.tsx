@@ -16,7 +16,7 @@ const page = async ({ params }: any) => {
     const namaSurahArab = rawLatin.data.nama
     const isSurahPage = true
     return (
-        <div>
+        <div className="bg-slate-950">
             <Navbar isSurahPage={isSurahPage} rawLatin={rawLatin} surahs={surahs} />
             <SurahCard surah={surah} namaSurahArab={namaSurahArab} />
             <Isisurah surah={surah} latins={latins} numberSurah={numberSurah} />

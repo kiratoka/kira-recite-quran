@@ -23,7 +23,7 @@ const Navbar = ({ isSurahPage, rawLatin, surahs }: { isSurahPage?: boolean; rawL
   };
 
   return (
-    <div className={`${isSurahPage? "sticky" : "fixed"} top-0 z-20 w-full`}>
+    <div className={`${isSurahPage ? "sticky" : "fixed"} top-0 z-20 w-full`}>
       {/* Main Navbar */}
       <nav className="backdrop-blur-lg bg-background/80">
         <div className="container mx-auto">
@@ -33,8 +33,9 @@ const Navbar = ({ isSurahPage, rawLatin, surahs }: { isSurahPage?: boolean; rawL
               href="/"
               className="flex items-center space-x-2 text-xl font-bold transition-colors hover:text-cyan-500 mr-3"
             >
-              <span className="text-cyan-500">Kira</span>
-              <span className="hidden sm:inline">Recite Quran</span>
+              <img src="/logo.png" alt="" className="w-16" />
+              <span className="max-[540px]:hidden  text-cyan-500">Kira</span>
+              <span className="max-[540px]:hidden ">Recite Quran</span>
             </Link>
 
             {/* Desktop Navigation - Centered */}

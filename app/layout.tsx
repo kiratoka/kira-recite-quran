@@ -19,6 +19,7 @@ const geistMono = localFont({
 export const metadata: Metadata = {
   title: "Kira Recite Quran",
   description: "Webiste tempat baca Quran beserta tafsirnya",
+  icons: "/icon.png"
 };
 
 export default function RootLayout({
