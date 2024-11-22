@@ -17,7 +17,7 @@ const SurahCard = ({ surah, namaSurahArab }: SurahCardProps & { namaSurahArab: s
 
                 {/* Card content */}
                 <div className="relative shadow-xl border border-gray-800 px-4 py-8 h-full overflow-hidden sm:rounded-md flex flex-col">
-                    <div className="flex justify-between items-start mb-4">
+                    <div className="flex justify-between items-start mb-4 z-10">
                         <div className="flex-1">
                             <h3 className="text-xl font-bold text-white mb-1">
                                 {surah.name} ( {namaSurahArab} )
@@ -33,7 +33,7 @@ const SurahCard = ({ surah, namaSurahArab }: SurahCardProps & { namaSurahArab: s
                         </div>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-4 mb-4">
+                    <div className="grid grid-cols-2 gap-4 mb-4 z-10">
                         <div className="text-sm">
                             <span className="font-medium text-gray-300">{surah.revelation}</span>
                         </div>
