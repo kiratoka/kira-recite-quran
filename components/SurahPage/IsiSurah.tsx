@@ -42,10 +42,11 @@ const Isisurah = ({ surah, latins, numberSurah }: SurahProps & LatinProps & Numb
 
 
 
+
   return (
     <div className="w-full mx-auto bg-gradient-to-b from-gray-900 to-gray-950 shadow-xl">
       <div className='py-6 px-3'>
-        {numberSurah > 1 && (
+        {parseInt(numberSurah) !== 1 && parseInt(numberSurah) !== 9 && (
           <div className="mb-8 space-y-4">
             <div className="flex max-sm:flex-col-reverse justify-center items-center gap-4">
               <button

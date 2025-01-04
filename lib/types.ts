@@ -68,5 +68,5 @@ export interface LatinProps {
 }
 
 export interface NumberSurahProps {
-    numberSurah: number;
+    numberSurah: string;
 }
