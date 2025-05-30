@@ -104,7 +104,6 @@ const AyatComponent = memo(({
 
   return (
     <AccordionItem
-      id={`ayat-${index.toString()}`}
       value={(index + 1).toString()}
       className={`sm:border-b max-w-6xl mx-auto border-gray-800 overflow-hidden transition-all duration-300 hover:border-cyan-500/50 ${
         isActive 
@@ -124,7 +123,7 @@ const AyatComponent = memo(({
             />
           </div>
           <div className="flex-1">
-            <p className="text-3xl sm:text-4xl md:text-[2.5rem] leading-loose sm:leading-[5rem] mt-3 mb-4 px-3 text-right" dir="rtl">
+            <p id={`ayat-${index.toString()}`} className="text-3xl sm:text-4xl md:text-[2.5rem] leading-loose sm:leading-[5rem] mt-3 mb-4 px-3 text-right" dir="rtl">
               <span className="arabic-text">
                 {parsedTajweed}
               </span>
