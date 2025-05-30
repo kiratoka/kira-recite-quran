@@ -35,9 +35,12 @@ Cara baca: meleburkan huruf Mim mati dengan Mim hidup di depannya, sambil dideng
     description: `Ketika huruf Nun mati & atau Tanwin bertemu dengan salah satu dari 15 huruf Ikhfa.
 Cara baca: menyamarkan huruf nun mati atau tanwin seperti bunyi "NG", serta ditahan sekitar 2 harakat sebelum menyebut huruf selanjutnya. 
 Ikhfa terbagi menjadi:
-1. **Ikhfa Aqrob (Dekat)** – NG terdengar kurang jelas (contoh: د، ت، ط)
-2. **Ikhfa Ausath (Sedang)** – NG sedang (contoh: س، ش، ص, dll)
-3. **Ikhfa Ab'ad (Jauh)** – NG terdengar jelas (contoh: ق، ك).`,
+1. Ikhfa Aqrob (Dekat)
+ NG terdengar kurang jelas (contoh: د، ت، ط)
+2. Ikhfa Ausath (Sedang)
+NG sedang (contoh: ث , ج , ذ , س , ش , ص , ض , ز , ظ , ف ).
+3. Ikhfa Ab'ad (Jauh)
+NG terdengar jelas (contoh: ق، ك).`,
     contoh: 'مِ<span class="ikhf">ن ش</span>َرِّ مَا خَلَقَ'
   },
   'Ikhafa\' Shafawi - With Meem': {

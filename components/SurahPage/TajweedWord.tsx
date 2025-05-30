@@ -47,10 +47,13 @@ export const TajweedWord = ({ type, description, className = "", children }: Taj
           <p className="mt-1 whitespace-pre-line arabic-text">{tajweedInfo[description].description}</p>
         )}
        {tajweedInfo[description]?.contoh && (
-          <div 
-            className="mt-1 arabic-text text-lg"
-            dangerouslySetInnerHTML={{ __html: tajweedInfo[description].contoh }}
-          />
+          <>
+            <p className="font-semibold mt-1">Contoh :</p>
+            <div 
+              className="mt-1 arabic-text text-2xl"
+              dangerouslySetInnerHTML={{ __html: tajweedInfo[description].contoh }}
+            />
+          </>
         )}
       </PopoverContent>
     </Popover>
