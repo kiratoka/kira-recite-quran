@@ -23,7 +23,7 @@ type SurahsProps = {
 
 const Surahs = ({ surahs }: SurahsProps) => {
     return (
-        <div className="min-h-screen bg-slate-950 text-white pt-14" id="listSurah">
+        <div className="min-h-screen bg-slate-950/50 text-white pt-14" id="listSurah">
             <div className="container mx-auto px-4 py-8">
                 {/* Header Section */}
 
@@ -33,7 +33,7 @@ const Surahs = ({ surahs }: SurahsProps) => {
                         <Card key={surah.number} className='max-w-7xl mx-auto'>
                             <AccordionItem
                                 value={surah.number.toString()}
-                                className="border-none bg-gray-900"
+                                className="border rounded-sm border-cyan-950"
                             >
 
                                 <Link
@@ -41,7 +41,7 @@ const Surahs = ({ surahs }: SurahsProps) => {
                                     className=""
                                     scroll={true}
                                 >
-                                    <div className="flex items-center p-4 hover:bg-gray-600/50 rounded-lg transition-all duration-300">
+                                    <div className="flex items-center p-4 hover:bg-cyan-950/50 rounded-lg transition-all duration-300">
                                         {/* Number Circle */}
                                         <div className="flex items-center justify-center h-12 w-12 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 mr-4">
                                             <span className="font-bold">
@@ -71,7 +71,7 @@ const Surahs = ({ surahs }: SurahsProps) => {
                                         </div>
                                     </div>
                                 </Link>
-                                <AccordionTrigger className="hover:no-underline hover:bg-gray-600 pr-5">
+                                <AccordionTrigger className="hover:no-underline hover:bg-cyan-950/50 pr-5">
                                     <div className="flex justify-center w-full">
                                         <h1 className="text-center">Deksripsi</h1>
                                     </div>

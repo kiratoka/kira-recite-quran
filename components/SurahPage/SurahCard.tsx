@@ -3,7 +3,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import { Meteors } from '../ui/meteors';
 import { SurahCardProps } from '@/lib/types';
 import { StarsBackground } from '../ui/stars-background';
-import { div } from 'framer-motion/client';
+
 
 
 
@@ -16,7 +16,7 @@ const SurahCard = ({ surah, namaSurahArab }: SurahCardProps & { namaSurahArab: s
                 {/* <div className="absolute inset-0 h-full w-full bg-gradient-to-r from-blue-500 to-teal-500 transform scale-[0.80] rounded-full blur-3xl" /> */}
 
                 {/* Card content */}
-                <div className="relative shadow-xl border border-gray-800 px-4 py-8 h-full overflow-hidden sm:rounded-md flex flex-col">
+                <div className="relative shadow-xl px-4 py-8 h-full overflow-hidden sm:rounded-md flex flex-col">
                     <div className="flex justify-between items-start mb-4 z-10">
                         <div className="flex-1">
                             <h3 className="text-xl font-bold text-white mb-1">

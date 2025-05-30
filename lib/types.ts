@@ -40,6 +40,7 @@ export interface SurahProps {
                 alafasy: string;
             };
         };
+        name: string;
         ayahs: {
             number: {
                 inSurah: number;
@@ -70,3 +71,11 @@ export interface LatinProps {
 export interface NumberSurahProps {
     numberSurah: string;
 }
+
+export type TajweedProps = {
+    surahsWithTajweedOnly: {
+      numberInSurah: number;
+      text: string;
+    }[];
+  };
+

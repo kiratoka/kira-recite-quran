@@ -84,3 +84,117 @@ body {
       opacity: 0;
     }
 }
+
+@font-face {
+  font-family: 'LPMQ Isep Misbah';
+  src: url('/fonts/LPMQ_IsepMisbah.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+} 
+.arabic-text {
+  font-family: 'LPMQ Isep Misbah', sans-serif;
+  
+}
+
+.waqaf {
+  margin-left: 0.2em;  /* Jarak di sebelah kiri */
+  margin-right: 0.3em; /* Jarak di sebelah kanan */
+}
+
+.ghn {
+  color: #FF7E1E; /* Ghunnah - oren */
+}
+.ghn:hover {
+  background-color: #f1ceb3;
+  color: #FF7E1E;
+  cursor: pointer;
+}
+
+.qlq {
+  color: #169200; /* Qalqalah - hijau */
+}
+.qlq:hover {
+  background-color: #BAE890;
+  color: #169200;
+  cursor: pointer;
+}
+
+.idgh_ghn {
+  color: #5A189A; /* Idgham bighunnah - ungu tua */
+}
+.idgh_ghn:hover {
+  background-color: #D6C1E6;
+  color: #5A189A;
+  cursor: pointer;
+}
+
+.idgh_w_ghn {
+  color: #AAAAAA; /* Idgham bilaghunnah - abu-abu */
+}
+.idgh_w_ghn:hover {
+  background-color: #E0E0E0;
+  color: #AAAAAA;
+  cursor: pointer;
+}
+
+.idghm_shfw {
+  color: #C6D200; /* Idgham mitslain/mimi - hijau kekuningan */
+}
+.idghm_shfw:hover {
+  background-color: #F6FFB0;
+  color: #C6D200;
+  cursor: pointer;
+}
+
+.idgh_mus {
+  color: #06b6d4; /* Idgham mus - cyan */
+}
+.idgh_mus:hover {
+  background-color: #cffafe;
+  color: #06b6d4;
+  cursor: pointer;
+}
+
+.iqlb {
+  color: #0074D9; /* Iqlab - biru */
+}
+.iqlb:hover {
+  background-color: #B3E6FF;
+  color: #0074D9;
+  cursor: pointer;
+}
+
+.ikhf {
+  color: #DD0008; /* Ikhfa - merah */
+}
+.ikhf:hover {
+  background-color: #F3A6A9;
+  color: #DD0008;
+  cursor: pointer;
+}
+
+.ikhf_shfw {
+  color: #FF69B4; /* Ikhfa syafawi - pink */
+}
+.ikhf_shfw:hover {
+  background-color: #FFD1EC;
+  color: #FF69B4;
+  cursor: pointer;
+}
+
+/* Untuk selain yang disebutkan, warna putih */
+.slnt,
+.ham_wasl,
+.madda_necessary,
+.madda_obligatory,
+.madda_permissible,
+.madda_normal {
+  color: #FFFFFF;
+}
+.ham_wasl:hover,
+.madda_necessary:hover,
+.madda_obligatory:hover,
+.madda_permissible:hover,
+.madda_normal:hover {
+  color: #FFFFFF;
+}
