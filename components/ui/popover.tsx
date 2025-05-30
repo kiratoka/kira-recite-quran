@@ -22,7 +22,7 @@ const PopoverContent = React.forwardRef<
       sideOffset={sideOffset}
       className={cn(
         // Base styles
-        "z-50 w-full max-w-sm sm:max-w-md lg:max-w-lg rounded-xl border border-cyan-400/30 outline-none",
+        "z-50 w-full max-w-xs sm:max-w-md lg:max-w-lg rounded-xl border border-cyan-400/30 outline-none",
         
         // Background with gradient and backdrop blur
         "bg-gradient-to-br from-black/95 via-gray-900/95 to-black/95 backdrop-blur-xl",
