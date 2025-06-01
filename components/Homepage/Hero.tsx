@@ -27,14 +27,17 @@ const Hero = () => {
                     “Barang siapa yang membaca satu huruf dari kitab Allah, maka baginya satu kebaikan. Satu kebaikan itu dibalas dengan sepuluh kali lipatnya. Aku tidak mengatakan alif laam miim itu satu huruf, tetapi aliif itu satu huruf, laam itu satu huruf, dan miim itu satu huruf.”
 
                 </span>
-                <span className="text-sm text-gray-400">
+                <span className="text-sm text-cyan-500">
                     (HR. Tirmidzi, no. 2910. Tirmidzi). [HR. Tirmidzi, no. 2910. Syaikh Salim bin ‘Ied Al-Hilaly].
                 </span>
                 <div className="mt-12">
-                    <Button variant="outline" className="text-xl py-8" onClick={handleButtonClick}>
-                        Mulai baca Quran Sekarang
-                        <ArrowRight className="w-full" />
-                    </Button>
+                    <button className="flex flex-row items-center justify-center bg-cyan-950 text-cyan-400 border border-cyan-400 border-b-4 font-medium overflow-hidden relative px-4 py-4 rounded-md hover:brightness-150 hover:border-t-4 hover:border-b active:opacity-75 outline-none duration-300 group" onClick={handleButtonClick}>
+                        <span className="bg-cyan-400 shadow-cyan-400 absolute -top-[150%] left-0 inline-flex w-80 h-[5px] rounded-md opacity-50 group-hover:top-[150%] duration-500 shadow-[0_0_10px_10px_rgba(0,0,0,0.3)]"></span>
+                        <span className="text-xl max-md:text-base font-semibold">
+                            Mulai baca Quran Sekarang
+                        </span>
+                        <ArrowRight className="ml-4" />
+                    </button>
                 </div>
             </div>
             <ShootingStars minSpeed={6} maxSpeed={6} starWidth={40} minDelay={5000} maxDelay={6000}/>

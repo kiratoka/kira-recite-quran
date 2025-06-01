@@ -16,7 +16,8 @@ import {
   X,
   Repeat,
   Repeat1,
-  Volume2
+  Volume2,
+  RotateCcw
 } from "lucide-react";
 import { LatinProps, NumberSurahProps, SurahProps, TajweedProps } from '@/lib/types';
 import { parseTajweedToReact } from '@/lib/parseTajweedToReact';
@@ -45,7 +46,7 @@ const PlayButton = memo(({
     disabled={disabled || isLoading}
   >
     {isActive && isPlaying ? (
-      <Pause className="h-5 w-5" />
+      <RotateCcw className="h-5 w-5" /> // Ubah dari Pause ke Repeat
     ) : (
       <Play className="h-5 w-5" />
     )}
@@ -89,8 +90,14 @@ const AyatComponent = memo(({
   onPlayAudio: (audioUrl: string, index: number) => void;
 }) => {
   const handlePlayClick = useCallback(() => {
-    onPlayAudio(ayat.audio.alafasy, index);
-  }, [ayat.audio.alafasy, index, onPlayAudio]);
+    if (isActive && isPlaying) {
+      // Jika ayat ini sedang aktif dan playing, maka ulangi dari awal
+      onPlayAudio(ayat.audio.alafasy, index);
+    } else {
+      // Jika tidak aktif atau tidak playing, maka play dari awal
+      onPlayAudio(ayat.audio.alafasy, index);
+    }
+  }, [ayat.audio.alafasy, index, onPlayAudio, isActive, isPlaying]);
 
   const arabicNumberMemo = useMemo(() => 
     convertToArabicNumber(ayat.number.inSurah), 
@@ -640,6 +647,15 @@ const Isisurah = ({ surah, latins, numberSurah, surahsWithTajweedOnly }: SurahPr
     handlePlayAudio(surah.bismillah.audio.alafasy, -1);
   }, [surah.bismillah.audio.alafasy, handlePlayAudio]);
 
+  const handleBismillahPlayClick = useCallback(() => {
+    if (playingIndex === -1 && isPlaying) {
+      // Jika bismillah sedang playing, maka ulangi dari awal
+      handleBismillahPlay();
+    } else {
+      // Jika tidak playing, maka play bismillah
+      handleBismillahPlay();
+    }
+  }, [playingIndex, isPlaying, handleBismillahPlay]);
   return (
     <div className="w-full mx-auto bg-gradient-to-b from-gray-900 to-gray-950 shadow-xl">
       <div className='py-6 px-3'>
@@ -647,7 +663,7 @@ const Isisurah = ({ surah, latins, numberSurah, surahsWithTajweedOnly }: SurahPr
           <div className="mb-8 space-y-4">
             <div className="flex max-sm:flex-col-reverse justify-center items-center gap-4">
               <button
-                onClick={handleBismillahPlay}
+                onClick={handleBismillahPlayClick}
                 className="p-3 rounded-full bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/20 text-cyan-400 transition-all duration-200"
               >
                 {playingIndex === -1 && isPlaying ? (
