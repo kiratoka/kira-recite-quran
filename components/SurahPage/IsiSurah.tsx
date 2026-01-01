@@ -112,7 +112,7 @@ const AyatComponent = memo(({
   return (
     <AccordionItem
       value={(index + 1).toString()}
-      className={`sm:border-b max-w-6xl mx-auto border-gray-800 overflow-hidden transition-all duration-300 hover:border-cyan-500/50 ${
+      className={`sm:border-b max-w-5xl mx-auto border-gray-800 overflow-hidden transition-all duration-300 hover:border-cyan-500/50 ${
         isActive 
           ? 'bg-gradient-to-r from-cyan-500/5 to-cyan-400/5 border-cyan-500/30 shadow-lg shadow-cyan-500/10' 
           : ''
@@ -151,7 +151,7 @@ const AyatComponent = memo(({
           <span>Tafsir</span>
         </AccordionTrigger>
 
-        <AccordionContent className="pt-4 px-4 text-base text-gray-400 border-t border-gray-800">
+        <AccordionContent className="pt-4 px-4 text-base md:text-lg text-gray-400 border-t border-gray-800">
           {ayat.tafsir.kemenag.long}
         </AccordionContent>
       </div>
