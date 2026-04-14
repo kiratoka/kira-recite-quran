@@ -8,7 +8,8 @@ type AyatTajweed = {
     text: string;
 };
 
-const page = async ({ params }: any) => {
+const page = async (props: any) => {
+    const params = await props.params;
     const numberSurah = params.id
     const responseSurahs = await fetch(`${process.env.NEXT_PUBLIC_API_URL}surahs`)
     const surahs = await responseSurahs.json()
