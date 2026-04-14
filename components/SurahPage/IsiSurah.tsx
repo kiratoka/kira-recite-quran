@@ -46,7 +46,7 @@ const PlayButton = memo(({
     disabled={disabled || isLoading}
   >
     {isActive && isPlaying ? (
-      <RotateCcw className="h-5 w-5" /> // Ubah dari Pause ke Repeat
+      (<RotateCcw className="h-5 w-5" />) // Ubah dari Pause ke Repeat
     ) : (
       <Play className="h-5 w-5" />
     )}
@@ -452,7 +452,7 @@ const Isisurah = ({ surah, latins, numberSurah, surahsWithTajweedOnly }: SurahPr
   const [isLoading, setIsLoading] = useState(false);
   
   const audioRef = useRef<HTMLAudioElement | null>(null);
-  const animationFrameRef = useRef<number>();
+  const animationFrameRef = useRef<number>(undefined);
 
   // Memoize computed values
   const shouldShowBismillah = useMemo(() => 
