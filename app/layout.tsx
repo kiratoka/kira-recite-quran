@@ -33,6 +33,10 @@ export const metadata: Metadata = {
     siteName: "Kira Recite Quran",
     locale: "id_ID",
   },
+  // Verifikasi kepemilikan situs untuk Google Search Console (SEO).
+  verification: {
+    google: "tWmVuRCNTrZoqouW25y10e6stIsVzAZVdKayg3m4IW0",
+  },
 };
 
 export default function RootLayout({
