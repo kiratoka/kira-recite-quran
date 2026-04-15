@@ -2,14 +2,16 @@ export interface RawLatinProps {
     data: {
         nomor: number;
         namaLatin: string;
+        // Bisa null di surah terakhir.
         suratSelanjutnya: {
             nomor: number;
             namaLatin: string;
-        };
+        } | null;
+        // Bisa null di surah pertama.
         suratSebelumnya: {
             nomor: number;
             namaLatin: string;
-        };
+        } | null;
     };
 }
 

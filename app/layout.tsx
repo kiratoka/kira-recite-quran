@@ -16,10 +16,27 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
+// Pakai env kalau ada, fallback ke localhost biar aman saat development.
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+
 export const metadata: Metadata = {
-  title: "Kira Recite Quran",
-  description: "Webiste tempat baca Quran beserta tafsirnya",
-  icons: "/icon.png"
+  // Default metadata untuk seluruh halaman.
+  title: {
+    default: "Kira Recite Quran",
+    template: "%s | Kira Recite Quran",
+  },
+  description: "Website untuk baca Quran lengkap dengan tajwid, tafsir, dan terjemahan.",
+  metadataBase: new URL(siteUrl),
+  icons: "/icon.png",
+  openGraph: {
+    type: "website",
+    siteName: "Kira Recite Quran",
+    locale: "id_ID",
+  },
+  // Verifikasi kepemilikan situs untuk Google Search Console (SEO).
+  verification: {
+    google: "tWmVuRCNTrZoqouW25y10e6stIsVzAZVdKayg3m4IW0",
+  },
 };
 
 export default function RootLayout({
@@ -28,12 +45,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    // suppressHydrationWarning dipakai karena class tema (dark/light)
+    // di-set oleh next-themes saat client hydrate.
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ThemeProvider
           attribute="class"
+          defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >

@@ -7,6 +7,7 @@ import {
 import Link from "next/link";
 import { Bookmark } from "lucide-react";
 import { Card } from "@/components/ui/card";
+import { getSurahHref } from "@/lib/surahSlug";
 
 interface Surah {
     number: number;
@@ -37,7 +38,8 @@ const Surahs = ({ surahs }: SurahsProps) => {
                             >
 
                                 <Link
-                                    href={`/surah/${surah.number}`}
+                                    // Pakai helper slug supaya URL ramah SEO.
+                                    href={getSurahHref(surah)}
                                     className=""
                                     scroll={true}
                                 >

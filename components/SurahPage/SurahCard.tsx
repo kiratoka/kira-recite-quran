@@ -1,4 +1,3 @@
-import React from 'react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Meteors } from '../ui/meteors';
 import { SurahCardProps } from '@/lib/types';
