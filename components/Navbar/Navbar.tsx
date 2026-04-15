@@ -10,10 +10,12 @@ const Navbar = ({ isSurahPage, rawLatin, surahs }: { isSurahPage?: boolean; rawL
   const [isOpen, setIsOpen] = useState(true);
 
   const namaSurah = rawLatin?.data.namaLatin;
-  const noSurahPrev = rawLatin?.data.suratSebelumnya.nomor;
-  const noSurahNext = rawLatin?.data.suratSelanjutnya.nomor;
-  const namaSurahPrev = rawLatin?.data.suratSebelumnya.namaLatin;
-  const namaSurahNext = rawLatin?.data.suratSelanjutnya.namaLatin;
+  // API bisa kirim null untuk prev/next (contoh: surah pertama/terakhir),
+  // jadi aksesnya pakai optional chaining sampai properti terdalam.
+  const noSurahPrev = rawLatin?.data.suratSebelumnya?.nomor;
+  const noSurahNext = rawLatin?.data.suratSelanjutnya?.nomor;
+  const namaSurahPrev = rawLatin?.data.suratSebelumnya?.namaLatin;
+  const namaSurahNext = rawLatin?.data.suratSelanjutnya?.namaLatin;
   const prevSurah = noSurahPrev && namaSurahPrev ? { number: noSurahPrev, name: namaSurahPrev } : null;
   const nextSurah = noSurahNext && namaSurahNext ? { number: noSurahNext, name: namaSurahNext } : null;
 

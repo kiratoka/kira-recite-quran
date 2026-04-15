@@ -2,7 +2,8 @@ import Surahs from "@/components/Homepage/Surahs"
 import Navbar from "../components/Navbar/Navbar"
 import Hero from "@/components/Homepage/Hero"
 
-export const revalidate = 60 * 60 * 24;
+// Next.js minta segment config `revalidate` berupa nilai statis/literal.
+export const revalidate = 86400;
 
 const Home = async () => {
   // Revalidate 1 hari karena daftar surah statis.

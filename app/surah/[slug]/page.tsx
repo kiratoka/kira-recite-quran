@@ -110,7 +110,8 @@ const resolveSlug = async (slug: string) => {
   return { surahs, surahNumber, canonicalSlug, matchedSurah };
 };
 
-export const revalidate = SURAH_REVALIDATE_SECONDS;
+// Harus literal supaya segment config kebaca valid waktu build.
+export const revalidate = 86400;
 
 export const generateStaticParams = async () => {
   const surahs = await getSurahList();
