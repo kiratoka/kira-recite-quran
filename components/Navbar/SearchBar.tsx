@@ -1,8 +1,11 @@
+"use client";
+
 import { useState, useEffect, useRef } from 'react';
 import { ListSurah } from '@/lib/types';
 import { useRouter } from 'next/navigation';
 import { X, Search } from 'lucide-react'; // Import ikon X dan Search dari lucide-react
 import Fuse from 'fuse.js';
+import { getSurahHref } from '@/lib/surahSlug';
 
 const SearchBar = ({ surahs }: { surahs: ListSurah[] }) => {
     const [query, setQuery] = useState<string>('');
@@ -47,8 +50,9 @@ const SearchBar = ({ surahs }: { surahs: ListSurah[] }) => {
         setFilteredSurah(filteredResults);
         setIsOpen(true);
     };
-    const handleSurahClick = (number: number) => {
-        router.push(`/surah/${number}`);
+    const handleSurahClick = (surah: ListSurah) => {
+        // Route hasil pencarian diarahkan ke slug SEO-friendly.
+        router.push(getSurahHref(surah));
         setIsOpen(false);
         setQuery('');
     };
@@ -105,7 +109,7 @@ const SearchBar = ({ surahs }: { surahs: ListSurah[] }) => {
                         {filteredSurah.map((surah) => (
                             <li
                                 key={surah.number}
-                                onClick={() => handleSurahClick(surah.number)}
+                                onClick={() => handleSurahClick(surah)}
                                 className="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer"
                             >
                                 <div className="flex items-center">

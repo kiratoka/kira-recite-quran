@@ -4,19 +4,18 @@ import SearchBar from "./SearchBar";
 import { ArrowLeft, ArrowRight, ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
 import { ListSurah, RawLatinProps } from "@/lib/types";
-
-
-
+import { getSurahHref } from "@/lib/surahSlug";
 const Navbar = ({ isSurahPage, rawLatin, surahs }: { isSurahPage?: boolean; rawLatin?: RawLatinProps; surahs: ListSurah[] }) => {
   // Ini untuk membuka tutup komponen navigasi surah next dan prev pada mobile
   const [isOpen, setIsOpen] = useState(true);
 
   const namaSurah = rawLatin?.data.namaLatin;
-  const noSurah = rawLatin?.data.nomor;
   const noSurahPrev = rawLatin?.data.suratSebelumnya.nomor;
   const noSurahNext = rawLatin?.data.suratSelanjutnya.nomor;
   const namaSurahPrev = rawLatin?.data.suratSebelumnya.namaLatin;
   const namaSurahNext = rawLatin?.data.suratSelanjutnya.namaLatin;
+  const prevSurah = noSurahPrev && namaSurahPrev ? { number: noSurahPrev, name: namaSurahPrev } : null;
+  const nextSurah = noSurahNext && namaSurahNext ? { number: noSurahNext, name: namaSurahNext } : null;
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -42,9 +41,10 @@ const Navbar = ({ isSurahPage, rawLatin, surahs }: { isSurahPage?: boolean; rawL
             {isSurahPage && (
               <div className="hidden md:flex flex-1 justify-center">
                 <div className="flex items-center rounded-full bg-secondary">
-                  {noSurahPrev ? (
+                  {prevSurah ? (
                     <Link
-                      href={`/surah/${noSurahPrev}`}
+                      // Tombol prev sekarang pakai route slug baru.
+                      href={getSurahHref(prevSurah)}
                       className="flex items-center px-4 py-2 transition-colors hover:text-cyan-500"
                     >
                       <ArrowLeft className="w-4 h-4 mr-2" />
@@ -58,9 +58,10 @@ const Navbar = ({ isSurahPage, rawLatin, surahs }: { isSurahPage?: boolean; rawL
                     {namaSurah}
                   </span>
 
-                  {noSurahNext ? (
+                  {nextSurah ? (
                     <Link
-                      href={`/surah/${noSurahNext}`}
+                      // Tombol next sekarang pakai route slug baru.
+                      href={getSurahHref(nextSurah)}
                       className="flex items-center px-4 py-2 transition-colors hover:text-cyan-500"
                     >
                       <span className="hidden md:inline">{noSurahNext}. {namaSurahNext}</span>
@@ -98,9 +99,9 @@ const Navbar = ({ isSurahPage, rawLatin, surahs }: { isSurahPage?: boolean; rawL
         <div className="md:hidden relative -z-10 backdrop-blur-lg  px-4 animate-in slide-in-from-top">
           <div className="flex py-2 justify-between items-center space-x-4">
             <div className="flex-1">
-              {noSurahPrev && (
+              {prevSurah && (
                 <Link
-                  href={`/surah/${noSurahPrev}`}
+                  href={getSurahHref(prevSurah)}
                   className="flex max-sm:text-xs items-center py-2 transition-colors hover:text-cyan-500"
                 >
                   <ArrowLeft className="w-4 h-4 mr-2" />
@@ -114,9 +115,9 @@ const Navbar = ({ isSurahPage, rawLatin, surahs }: { isSurahPage?: boolean; rawL
             </div>
 
             <div className="flex-1 text-right">
-              {noSurahNext && (
+              {nextSurah && (
                 <Link
-                  href={`/surah/${noSurahNext}`}
+                  href={getSurahHref(nextSurah)}
                   className="flex max-sm:text-xs items-center justify-end py-2 transition-colors hover:text-cyan-500"
                 >
                   {noSurahNext}. {namaSurahNext}
