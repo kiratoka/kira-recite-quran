@@ -22,15 +22,15 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 export const metadata: Metadata = {
   // Default metadata untuk seluruh halaman.
   title: {
-    default: "Kira Recite Quran",
-    template: "%s | Kira Recite Quran",
+    default: "Kira Recite Quran - Baca Quran Lengkap dengan Tajwid, Tafsir, dan Terjemahan.",
+    template: "",
   },
   description: "Website untuk baca Quran lengkap dengan tajwid, tafsir, dan terjemahan.",
   metadataBase: new URL(siteUrl),
   icons: "/icon.png",
   openGraph: {
     type: "website",
-    siteName: "Kira Recite Quran",
+    siteName: "Kira Recite Quran - Baca Quran Lengkap dengan Tajwid, Tafsir, dan Terjemahan.",
     locale: "id_ID",
   },
   // Verifikasi kepemilikan situs untuk Google Search Console (SEO).
