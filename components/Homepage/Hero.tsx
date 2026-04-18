@@ -9,7 +9,7 @@ const Hero = () => {
                 <h2 className="relative flex-col md:flex-row z-10 text-3xl md:text-5xl md:leading-tight max-w-5xl mx-auto text-center tracking-tight font-semibold bg-clip-text text-transparent bg-gradient-to-b from-neutral-600 via-cyan-500 to-white flex items-center gap-2 md:gap-8">
                     <span>Kira Recite Quran</span>
                 </h2>
-                <p className="hidden">Baca Quran Lengkap dengan Tajwid, Tafsir, dan Terjemahan.</p>
+                <p className="hidden">Kira Recite Quran adalah website Baca Quran Lengkap dengan Tajwid, Tafsir, dan Terjemahan.</p>
                 <span className="mt-5 text-2xl md:text-4xl max-sm:hidden">وَعَنِ ابْنِ مَسْعُوْدٍ رَضِيَ اللهُ عَنْهُ قَالَ : قَالَ رَسُوْلُ اللهِ صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ “مَنْ قَرَأَ حَرْفًا مِنْ كِتَابِ اللهِ فَلَهُ حَسَنَةٌ وَالحَسَنَةُ بِعَشْرِ أَمْثَالِهَا , لاَ أَقُوْلُ الم حَرْفٌ وَلَكِنْ أَلِفٌ حَرْفٌ وَلاَمٌ حَرْفٌ وَمِيْمٌ حَرْفٌ”
 
                     رَوَاهُ التِّرْمِذِيُّ وَقَالَ حَدِيْثٌ حَسَنٌ صَحِيْحٌ
@@ -25,7 +25,7 @@ const Hero = () => {
                     <HeroCtaButton />
                 </div>
             </div>
-            <ShootingStars minSpeed={6} maxSpeed={6} starWidth={40} minDelay={5000} maxDelay={6000}/>
+            <ShootingStars minSpeed={6} maxSpeed={6} starWidth={40} minDelay={5000} maxDelay={6000} />
             <StarsBackground />
         </div>
     )
