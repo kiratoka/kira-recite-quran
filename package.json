@@ -7,9 +7,9 @@
     "build": "next build && opennextjs-cloudflare build",
     "start": "next start",
     "cloudflare-build": "opennextjs-cloudflare build",
-    "preview": "npm run cloudflare-build && opennextjs-cloudflare preview",
-    "deploy": "npm run cloudflare-build && opennextjs-cloudflare deploy",
-    "upload": "npm run cloudflare-build && opennextjs-cloudflare upload",
+   "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
+"deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
+"cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts" ,
     "lint": "eslint ."
   },
   "dependencies": {
@@ -37,7 +37,7 @@
     "tajweed": "^1.1.1"
   },
   "devDependencies": {
-    "@opennextjs/cloudflare": "^1.19.8",
+    "@opennextjs/cloudflare": "^1.19.9",
     "@types/node": "^20",
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
