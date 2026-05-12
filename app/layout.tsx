@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   },
   // Verifikasi kepemilikan situs untuk Google Search Console (SEO).
   verification: {
-    google: "tWmVuRCNTrZoqouW25y10e6stIsVzAZVdKayg3m4IW0",
+    google: "fHVkFeaCiUfY3mif9uTl-czuntHx3kTmqa6dB5KXSA4",
   },
 };
 
