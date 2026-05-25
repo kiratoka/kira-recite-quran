@@ -3,12 +3,9 @@ import { buildSurahSlug } from "@/lib/surahSlug";
 import type { ListSurah } from "@/lib/types";
 
 // Menentukan Base URL dari environment variable.
-// Mendukung NEXT_PUBLIC_BASE_URL sesuai permintaan, NEXT_PUBLIC_SITE_URL yang sudah ada di .env,
-// dan fallback default yang aman.
 const BASE_URL = (
-  process.env.NEXT_PUBLIC_BASE_URL || 
   process.env.NEXT_PUBLIC_SITE_URL || 
-  "https://kirarecitequran.vercel.app"
+  "https://kira-recite-quran-api.netlify.app"
 ).replace(/\/$/, ""); // Menghapus trailing slash jika ada agar URL rapi
 
 /**

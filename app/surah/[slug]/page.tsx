@@ -1,75 +1,16 @@
 import type { Metadata } from "next";
 import { redirect, notFound } from "next/navigation";
-import { Tajweed } from "tajweed";
 import Navbar from "@/components/Navbar/Navbar";
 import Isisurah from "@/components/SurahPage/IsiSurahServer";
 import SurahCard from "@/components/SurahPage/SurahCard";
-import { buildSurahSlug, getSurahNumberFromSlug } from "@/lib/surahSlug";
-import { ListSurah } from "@/lib/types";
+import { getSurahList, resolveSurahPageData } from "@/services/surahService";
+import { buildSurahSlug } from "@/lib/surahSlug";
 
-type AyatTajweed = {
-  numberInSurah: number;
-  text: string;
-};
-
-type SurahDetail = {
-  number: number;
-  name: string;
-  translation: string;
-  revelation: "Makkiyah" | "Madaniyah";
-  numberOfAyahs: number;
-  description: string;
-  bismillah: {
-    arab: string;
-    translation: string;
-    audio: {
-      alafasy: string;
-    };
-  };
-  ayahs: Array<{
-    number: {
-      inSurah: number;
-    };
-    arab: string;
-    translation: string;
-    image: {
-      primary: string;
-    };
-    tafsir: {
-      kemenag: {
-        long: string;
-      };
-    };
-    audio: {
-      alafasy: string;
-    };
-  }>;
-};
-
-type LatinApiResponse = {
-  data: {
-    nama: string;
-    namaLatin: string;
-    nomor: number;
-    ayat: Array<{
-      teksLatin: string;
-    }>;
-    suratSelanjutnya: {
-      nomor: number;
-      namaLatin: string;
-    };
-    suratSebelumnya: {
-      nomor: number;
-      namaLatin: string;
-    };
-  };
-};
-
-type TajweedApiResponse = {
-  data: Array<{
-    ayahs: AyatTajweed[];
-  }>;
-};
+// Mengambil Base URL absolut dari environment variable untuk standardisasi SEO
+const BASE_URL = (
+  process.env.NEXT_PUBLIC_SITE_URL || 
+  "https://kira-recite-quran-api.netlify.app"
+).replace(/\/$/, "");
 
 type SurahPageProps = {
   params: Promise<{
@@ -77,56 +18,33 @@ type SurahPageProps = {
   }>;
 };
 
-const SURAH_REVALIDATE_SECONDS = 60 * 60 * 24;
-
-const getSurahList = async (): Promise<ListSurah[]> => {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}surahs`, {
-    next: { revalidate: SURAH_REVALIDATE_SECONDS },
-  });
-
-  if (!response.ok) {
-    throw new Error("Gagal mengambil daftar surah");
-  }
-
-  return response.json() as Promise<ListSurah[]>;
-};
-
-const resolveSlug = async (slug: string) => {
-  const surahs = await getSurahList();
-  const surahNumber = getSurahNumberFromSlug(slug);
-
-  if (!surahNumber) {
-    return null;
-  }
-
-  const matchedSurah = surahs.find((surah) => surah.number === surahNumber);
-
-  if (!matchedSurah) {
-    return null;
-  }
-
-  // Ini slug canonical yang jadi patokan SEO.
-  const canonicalSlug = buildSurahSlug(matchedSurah.name, matchedSurah.number);
-  return { surahs, surahNumber, canonicalSlug, matchedSurah };
-};
-
-// Harus literal supaya segment config kebaca valid waktu build.
+// Next.js segment config: ISR Revalidate selama 1 hari (86400 detik)
 export const revalidate = 86400;
 
+/**
+ * Pre-render seluruh halaman surah statis saat proses build (SSG) demi performa kilat.
+ */
 export const generateStaticParams = async () => {
-  const surahs = await getSurahList();
-
-  // Pre-render semua halaman surah biar cepat diakses (SSG).
-  return surahs.map((surah) => ({
-    slug: buildSurahSlug(surah.name, surah.number),
-  }));
+  try {
+    const surahs = await getSurahList();
+    return surahs.map((surah) => ({
+      slug: buildSurahSlug(surah.name, surah.number),
+    }));
+  } catch (error) {
+    console.error("Gagal melakukan generateStaticParams:", error);
+    return [];
+  }
 };
 
+/**
+ * Membuat Metadata dinamis untuk optimalisasi SEO Crawler (Google, Social Media, dll).
+ * Memanfaatkan caching terpadu dari Service Layer untuk efisiensi ekstra (no double fetch).
+ */
 export const generateMetadata = async ({ params }: SurahPageProps): Promise<Metadata> => {
   const { slug } = await params;
-  const resolved = await resolveSlug(slug);
+  const data = await resolveSurahPageData(slug);
 
-  if (!resolved) {
+  if (!data) {
     return {
       title: "Surah tidak ditemukan | Kira Recite Quran",
       description: "Halaman surah yang kamu cari tidak tersedia.",
@@ -134,10 +52,10 @@ export const generateMetadata = async ({ params }: SurahPageProps): Promise<Meta
     };
   }
 
-  const { matchedSurah, canonicalSlug } = resolved;
-  const canonicalUrl = `/surah/${canonicalSlug}`;
+  const { matchedSurah, canonicalSlug } = data;
+  const canonicalUrl = `${BASE_URL}/surah/${canonicalSlug}`;
   const title = `${matchedSurah.name} (${matchedSurah.translation}) - Surah ${matchedSurah.number} | Kira Recite Quran`;
-  const description = `Baca Surah ${matchedSurah.name} lengkap dengan tajwid, terjemahan, dan tafsir.).`;
+  const description = `Baca Surah ${matchedSurah.name} lengkap dengan tajwid berwarna, terjemahan bahasa Indonesia, dan tafsir resmi Kemenag.`;
 
   return {
     title,
@@ -161,81 +79,79 @@ export const generateMetadata = async ({ params }: SurahPageProps): Promise<Meta
   };
 };
 
+/**
+ * Komponen utama halaman Surah (Stateless UI Component).
+ * Hanya menerima data bersih yang sudah divalidasi oleh Zod dan memetakan UI.
+ */
 const SurahPage = async ({ params }: SurahPageProps) => {
   const { slug } = await params;
-  const resolved = await resolveSlug(slug);
+  const data = await resolveSurahPageData(slug);
 
-  if (!resolved) {
+  // Jika data tidak valid atau surah tidak ditemukan, arahkan ke halaman 404
+  if (!data) {
     notFound();
   }
 
-  const { surahs, surahNumber, canonicalSlug, matchedSurah } = resolved;
+  const {
+    surahs,
+    surahNumber,
+    canonicalSlug,
+    matchedSurah,
+    surah,
+    surahsWithTajweedOnly,
+    latins,
+    rawLatin,
+  } = data;
 
-  // Redirect ke slug canonical kalau user akses slug yang salah/kurang rapi.
+  // Lakukan redirect ke slug kanonis jika pengguna memasukkan slug yang kurang rapi / salah ketik
   if (slug !== canonicalSlug) {
     redirect(`/surah/${canonicalSlug}`);
   }
 
-  const [surahResponse, tajweedResponse, latinResponse] = await Promise.all([
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}surahs/${surahNumber}`, {
-      next: { revalidate: SURAH_REVALIDATE_SECONDS },
-    }),
-    fetch(`${process.env.NEXT_PUBLIC_API_TAJWEED}${surahNumber}/editions/quran-tajweed`, {
-      next: { revalidate: SURAH_REVALIDATE_SECONDS },
-    }),
-    fetch(`${process.env.NEXT_PUBLIC_API_LATIN}api/v2/surat/${surahNumber}`, {
-      next: { revalidate: SURAH_REVALIDATE_SECONDS },
-    }),
-  ]);
-
-  if (!surahResponse.ok || !tajweedResponse.ok || !latinResponse.ok) {
-    notFound();
-  }
-
-  const [surah, tajweedSurahs, rawLatin] = (await Promise.all([
-    surahResponse.json() as Promise<SurahDetail>,
-    tajweedResponse.json() as Promise<TajweedApiResponse>,
-    latinResponse.json() as Promise<LatinApiResponse>,
-  ])) satisfies [SurahDetail, TajweedApiResponse, LatinApiResponse];
-
-  const tajweed = new Tajweed();
-
-  // Parse tajwid sekali di server supaya client lebih ringan.
-  const surahsWithTajweedOnly: AyatTajweed[] = tajweedSurahs.data[0].ayahs.map(
-    ({ numberInSurah, text }) => ({
-      numberInSurah,
-      text: tajweed.parse(text, true),
-    }),
-  );
-
-  const latins = rawLatin.data.ayat;
-  const namaSurahArab = rawLatin.data.nama;
-  const isSurahPage = true;
   const numberSurah = surahNumber.toString();
+  const namaSurahArab = rawLatin.data.nama;
 
+  // Struktur Data JSON-LD Komprehensif Tingkat Enterprise (schema.org)
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
-    headline: `${matchedSurah.name} - Surah ${matchedSurah.number}`,
-    description: `Bacaan Surah ${matchedSurah.name} dengan tajwid, tafsir, dan terjemahan.`,
+    headline: `${matchedSurah.name} (${matchedSurah.translation}) - Surah ${matchedSurah.number} | Kira Recite Quran`,
+    description: `Bacaan Surah ${matchedSurah.name} lengkap dengan tajwid berwarna, terjemahan bahasa Indonesia, dan tafsir Kementerian Agama.`,
     inLanguage: "id-ID",
+    image: [
+      `${BASE_URL}/icon.png`
+    ],
+    datePublished: "2026-05-25T00:00:00+07:00",
+    dateModified: new Date().toISOString(),
     author: {
       "@type": "Organization",
       name: "Kira Recite Quran",
+      url: BASE_URL,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Kira Recite Quran",
+      logo: {
+        "@type": "ImageObject",
+        url: `${BASE_URL}/icon.png`,
+      },
     },
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `/surah/${canonicalSlug}`,
+      "@id": `${BASE_URL}/surah/${canonicalSlug}`,
     },
+    articleSection: "Al-Quran",
+    keywords: `surah ${matchedSurah.name.toLowerCase()}, baca quran, tajwid quran, tafsir surah ${matchedSurah.name.toLowerCase()}`,
   };
 
   return (
     <div className="bg-slate-950">
+      {/* Menyuntikkan struktur data JSON-LD untuk mempermudah Google indexing */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <Navbar isSurahPage={isSurahPage} rawLatin={rawLatin} surahs={surahs} />
+      <Navbar isSurahPage={true} rawLatin={rawLatin} surahs={surahs} />
       <SurahCard surah={surah} namaSurahArab={namaSurahArab} />
       <Isisurah
         surahsWithTajweedOnly={surahsWithTajweedOnly}
@@ -248,4 +164,3 @@ const SurahPage = async ({ params }: SurahPageProps) => {
 };
 
 export default SurahPage;
-
