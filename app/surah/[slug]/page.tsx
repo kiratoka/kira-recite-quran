@@ -8,7 +8,7 @@ import { buildSurahSlug } from "@/lib/surahSlug";
 
 // Mengambil Base URL absolut dari environment variable untuk standardisasi SEO
 const BASE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL || 
+  process.env.NEXT_PUBLIC_SITE_URL ||
   "https://kira-recite-quran-api.netlify.app"
 ).replace(/\/$/, "");
 
