@@ -5,7 +5,7 @@ import Hero from "@/components/Homepage/Hero";
 
 const BASE_URL = (
   process.env.NEXT_PUBLIC_SITE_URL || 
-  "https://kira-recite-quran-api.netlify.app"
+  "https://kirarecitequran.netlify.app"
 ).replace(/\/$/, "");
 
 export const metadata: Metadata = {

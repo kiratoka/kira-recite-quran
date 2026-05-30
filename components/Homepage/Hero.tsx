@@ -32,7 +32,7 @@ const Hero = () => {
                     <HeroCtaButton />
                 </div>
             </div>
-            <ShootingStars minSpeed={6} maxSpeed={6} starWidth={40} minDelay={5000} maxDelay={6000}/>
+            <ShootingStars minSpeed={6} maxSpeed={6} starWidth={40} minDelay={5000} maxDelay={6000} />
             <StarsBackground />
         </div>
     )
