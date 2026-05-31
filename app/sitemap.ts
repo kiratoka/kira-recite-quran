@@ -5,7 +5,7 @@ import type { ListSurah } from "@/lib/types";
 // Menentukan Base URL dari environment variable.
 const BASE_URL = (
   process.env.NEXT_PUBLIC_SITE_URL || 
-  "https://kira-recite-quran-api.netlify.app"
+  "https://kirarecitequran.netlify.app"
 ).replace(/\/$/, ""); // Menghapus trailing slash jika ada agar URL rapi
 
 /**
@@ -14,7 +14,7 @@ const BASE_URL = (
  */
 async function fetchDynamicSurahs(): Promise<ListSurah[]> {
   try {
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL || "https://kira-recite-quran-api.vercel.app/";
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || "https://kira-recite-quran-api.netlify.app/";
     const res = await fetch(`${apiUrl}surahs`, {
       next: { revalidate: 86400 },
     });
