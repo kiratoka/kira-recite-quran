@@ -19,6 +19,10 @@ export interface ListSurah {
     number: number
     name: string
     translation: string
+    numberOfAyahs?: number
+    revelation?: 'Makkiyah' | 'Madaniyah'
+    description?: string
+    audio?: string
 }
 
 

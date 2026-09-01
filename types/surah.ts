@@ -7,6 +7,10 @@ export interface ListSurah {
   number: number;
   name: string;
   translation: string;
+  numberOfAyahs?: number;
+  revelation?: "Makkiyah" | "Madaniyah";
+  description?: string;
+  audio?: string;
 }
 
 export interface AyatDetail {
@@ -88,3 +92,21 @@ export interface SurahPageData {
   latins: Array<{ teksLatin: string }>;
   rawLatin: LatinApiResponse;
 }
+
+/**
+ * Kontrak data final untuk halaman detail ayat (AyatDetailPage).
+ */
+export interface AyatDetailPageData {
+  surahs: ListSurah[];
+  surah: SurahDetail;
+  ayat: AyatDetail;
+  ayatNumber: number;
+  canonicalSlug: string;
+  matchedSurah: ListSurah;
+  tajweedText: string;
+  latin: { teksLatin: string };
+  rawLatin: LatinApiResponse;
+  prevAyatNumber: number | null;
+  nextAyatNumber: number | null;
+}
+

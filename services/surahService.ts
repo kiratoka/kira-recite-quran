@@ -7,6 +7,7 @@ import type {
   LatinApiResponse,
   AyatTajweed,
   SurahPageData,
+  AyatDetailPageData,
 } from "@/types/surah";
 
 const SURAH_REVALIDATE_SECONDS = 60 * 60 * 24; // 1 Hari (86400 detik)
@@ -93,3 +94,57 @@ export async function resolveSurahPageData(slug: string): Promise<SurahPageData 
     rawLatin: latin,
   };
 }
+
+/**
+ * Menyelesaikan seluruh data yang diperlukan untuk halaman detail ayat.
+ */
+export async function resolveAyatDetailData(
+  slug: string,
+  ayatNumber: number
+): Promise<AyatDetailPageData | null> {
+  const surahData = await resolveSurahPageData(slug);
+  if (!surahData) {
+    return null;
+  }
+
+  const {
+    surahs,
+    surah,
+    surahsWithTajweedOnly,
+    latins,
+    rawLatin,
+    canonicalSlug,
+    matchedSurah,
+  } = surahData;
+
+  if (ayatNumber < 1 || ayatNumber > surah.numberOfAyahs) {
+    return null;
+  }
+
+  const ayatIndex = ayatNumber - 1;
+  const ayat = surah.ayahs[ayatIndex];
+  if (!ayat) {
+    return null;
+  }
+
+  const tajweedText = surahsWithTajweedOnly[ayatIndex]?.text || "";
+  const latin = latins[ayatIndex] || { teksLatin: "" };
+
+  const prevAyatNumber = ayatNumber > 1 ? ayatNumber - 1 : null;
+  const nextAyatNumber = ayatNumber < surah.numberOfAyahs ? ayatNumber + 1 : null;
+
+  return {
+    surahs,
+    surah,
+    ayat,
+    ayatNumber,
+    canonicalSlug,
+    matchedSurah,
+    tajweedText,
+    latin,
+    rawLatin,
+    prevAyatNumber,
+    nextAyatNumber,
+  };
+}
+

@@ -1,5 +1,6 @@
 "use client"
 import { useState, useEffect, useRef, useCallback, useMemo, memo } from 'react';
+import Link from 'next/link';
 import {
   Accordion,
   AccordionContent,
@@ -17,10 +18,12 @@ import {
   Repeat,
   Repeat1,
   Volume2,
-  RotateCcw
+  RotateCcw,
+  Maximize2
 } from "lucide-react";
 import { LatinProps, NumberSurahProps, SurahProps, TajweedProps } from '@/lib/types';
 import { parseTajweedToReact } from '@/lib/parseTajweedToReact';
+import { buildSurahSlug } from '@/lib/surahSlug';
 
 // Memoized components untuk mencegah re-render yang tidak perlu
 const PlayButton = memo(({ 
@@ -75,6 +78,7 @@ const AyatComponent = memo(({
   index, 
   latin, 
   tajweedText, 
+  surahSlug,
   isPlaying, 
   isActive, 
   isLoading, 
@@ -84,6 +88,7 @@ const AyatComponent = memo(({
   index: number;
   latin: any;
   tajweedText: string;
+  surahSlug: string;
   isPlaying: boolean;
   isActive: boolean;
   isLoading: boolean;
@@ -128,6 +133,17 @@ const AyatComponent = memo(({
               isLoading={isLoading}
               isActive={isActive}
             />
+            <Link
+              href={`/surah/${surahSlug}/ayat/${ayat.number.inSurah}`}
+              className={`p-3 rounded-full border transition-all duration-300 ${
+                isActive
+                  ? 'bg-cyan-500/20 hover:bg-cyan-500/30 border-cyan-400 text-cyan-300 shadow-lg shadow-cyan-500/20'
+                  : 'bg-cyan-500/10 hover:bg-cyan-500/20 border-cyan-500/20 text-cyan-400'
+              }`}
+              title={`Lihat detail ayat ${ayat.number.inSurah}`}
+            >
+              <Maximize2 className="h-5 w-5" />
+            </Link>
           </div>
           <div className="flex-1">
             <p id={`ayat-${index.toString()}`} className="text-3xl sm:text-4xl md:text-[2.5rem] leading-loose sm:leading-[5rem] mt-3 mb-4 px-3 text-right" dir="rtl">
@@ -461,6 +477,11 @@ const Isisurah = ({
   const animationFrameRef = useRef<number>(undefined);
 
   // Memoize computed values
+  const surahSlug = useMemo(() => 
+    buildSurahSlug(surah.name, parseInt(numberSurah, 10)), 
+    [surah.name, numberSurah]
+  );
+
   const shouldShowBismillah = useMemo(() => 
     parseInt(numberSurah) !== 1 && parseInt(numberSurah) !== 9, 
     [numberSurah]
@@ -707,6 +728,7 @@ const Isisurah = ({
               index={index}
               latin={latins[index]}
               tajweedText={surahsWithTajweedOnly[index]?.text || ''}
+              surahSlug={surahSlug}
               isPlaying={isPlaying}
               isActive={playingIndex === index}
               isLoading={isLoading}
